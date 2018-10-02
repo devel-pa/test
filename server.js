@@ -1,5 +1,6 @@
 'use strict'
 
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -7,9 +8,10 @@ const mysql = require('mysql2/promise');
 const { getLocalSignup, getLocalLogin } = require('./app/strategy');
 
 const getConnection = async () => await mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    database: 'upstack'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
 });
 
 const connection = getConnection()

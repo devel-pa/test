@@ -5,7 +5,7 @@ module.exports = (app, passport, conn) => {
 
     app.get('/login', (req, res) => res.render('login.ejs'));
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect: '/',
+        successRedirect: '/bingo',
         failureRedirect: '/login'
     })); // TODO
     app.get('/logout', (req, res) => res.render(''));
@@ -26,4 +26,6 @@ module.exports = (app, passport, conn) => {
                 }
             });
     });
+
+    app.get('/bingo', (req, res) => res.render('bingo.ejs'));
 };
